@@ -42,23 +42,5 @@ namespace _1Persist
             return radarLista;
         }
     }
-    //public static string GetData(string path)
-    //{
-    //    string json = "";
-
-    //    try
-    //    {
-    //        using (StreamReader sr = new StreamReader(path))
-    //        {
-    //            json = sr.ReadToEnd();
-    //        }
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        Console.WriteLine("Erro ao ler o arquivo: " + ex.Message);
-    //    }
-
-    //    return json;
-    //}
 }
 

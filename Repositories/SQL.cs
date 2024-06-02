@@ -1,7 +1,9 @@
 ﻿using Microsoft.Data.SqlClient;
 using Model;
-using System.Text.Json;
-using System.Xml.Linq;
+using MongoDB.Driver;
+using System.Text;
+using static Model.Radar;
+
 
 namespace Repositories
 {
@@ -39,6 +41,38 @@ namespace Repositories
                 connection.Close();
             }
         }
-        //Recuperar dados SQL  
+        public List<Radar> RecuperarSQL()
+        {
+            List<Radar> radares = new List<Radar>();
+            string consultaSQL = "SELECT * FROM Radar";
+
+            using (SqlCommand comando = new SqlCommand(consultaSQL))
+            {
+                using (SqlDataReader leitor = comando.ExecuteReader())
+                {
+                    while (leitor.Read())
+                    {
+                        Radar radar = new Radar();
+                        radar.Id = leitor.GetInt32(0);
+                        radar.concessionaria = leitor.GetString(1);
+                        radar.ano_PNV_SNV = leitor.GetString(2);
+                        radar.tipo_Radar = leitor.GetString(3);
+                        radar.rodovia = leitor.GetString(4);
+                        radar.uf = leitor.GetString(5);
+                        radar.km_m = leitor.GetString(6);
+                        radar.municipio = leitor.GetString(7);
+                        radar.tipo_Pista = leitor.GetString(8);
+                        radar.sentido = leitor.GetString(9);
+                        radar.situacao = leitor.GetString(10);
+                        radar.data_Inativacao = leitor.GetString(11)?.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                        radar.latitude = leitor.GetString(12);
+                        radar.longitude = leitor.GetString(13);
+                        radar.velocidade_Leve = leitor.GetString(14);
+                        radares.Add(radar);
+                    }
+                }
+            }
+            return radares;
+        }
     }
 }

@@ -1,8 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using Model;
 using MongoDB.Driver;
-using System.Text.Json;
-using System.Xml.Linq;
+
 
 namespace Repositories
 {
@@ -13,6 +12,8 @@ namespace Repositories
         static string mongoDatabaseName = "DBRadar";
         static string mongoCollectionName = "Radar";
         static SqlConnection sqlConnection = new SqlConnection(sqlConnectionString);
+
+        private IMongoCollection<Radar> colecao;
 
         public static void TransferirDadosParaMongo()
         {
@@ -64,6 +65,15 @@ namespace Repositories
                 Console.WriteLine("Dados não tranferidos, erro: " + e.Message);
             }
         }
-        //Recuperar dados Mongo
+        public void ManipularMongo(IMongoDatabase BD)
+        {
+            colecao = BD.GetCollection<Radar>("Radar");
+
+        }
+        public List<Radar> RecuperarMongo()
+        {
+            return colecao.Find(radar=>true).ToList();
+        }
+
     }
 }
