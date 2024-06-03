@@ -1,0 +1,19 @@
+[{
+  "_id": {
+    "$oid": "665cca40d4d78b5d787b3901"
+  },
+  "concessionaria": "concessionaria",
+  "ano_do_pnv_snv": "ano_PNV_SNV",
+  "tipo_de_radar": "tipo_Radar",
+  "rodovia": "rodovia",
+  "uf": "uf",
+  "km_m": "km_m",
+  "municipio": "municipio",
+  "tipo_pista": "tipo_Pista",
+  "sentido": "sentido",
+  "situacao": "situacao",
+  "data_da_inativacao": "data_Inativacao",
+  "latitude": "latitude",
+  "longitude": "longitude",
+  "velocidade_leve": "velocidade_Leve"
+}]
